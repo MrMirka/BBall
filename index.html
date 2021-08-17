@@ -83,7 +83,7 @@
 			directionalLight.shadow.mapSize.height = 2048; 
 			directionalLight.shadow.radius = 20;
 			directionalLight.shadow.camera.far = 20;
-			directionalLight.castShadow = true;
+			//directionalLight.castShadow = true;
 			scene.add( directionalLight );
             scene.add( new THREE.CameraHelper( directionalLight.shadow.camera ) );
             //END_LIGTH
@@ -112,7 +112,7 @@
 			backMesh.rotation.x=-1.5708;
 			backMesh.position.y=-0.25;
 			
-			backMesh.receiveShadow = true;
+			//backMesh.receiveShadow = true;
 			scene.add(backMesh);
 
 			//END_BACKGROUND PLANE
@@ -148,7 +148,7 @@
 				gltf.scene.castShadow=true;
 				gltf.scene.traverse( function( node ) {
 						if ( node.isMesh ) {
-                            node.castShadow = true;
+                            //node.castShadow = true;
                             roughnessMipmapper.generateMipmaps( node.material );
                         }
 				} );
