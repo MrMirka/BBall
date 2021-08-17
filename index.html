@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+		</style>
+	</head>
+	<body>
+		<script src="https://threejs.org/build/three.js"></script>
+
+
+		
+	
+
+		<script type="module">
+			import { GLTFLoader } from 'threejs-dev/examples/jsm/loaders/GLTFLoader.js';
+			import { OrbitControls } from 'threejs-dev/examples/jsm/controls/OrbitControls.js';
+            import { RGBELoader } from 'http:threejs-dev/examples/jsm/loaders/RGBELoader.js';
+            import { RoughnessMipmapper } from 'threejs-dev/examples/jsm/utils/RoughnessMipmapper.js';
+
+			var fraction, newPosition, tangent, axis, radians, pointsPath, up, axisGo, upGo, radiansGo;
+
+			const scene = new THREE.Scene();
+			const camera = new THREE.PerspectiveCamera( 750, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+
+				// overwrite shadowmap code
+
+			/*	let shader = THREE.ShaderChunk.shadowmap_pars_fragment;
+
+				shader = shader.replace(
+					'#ifdef USE_SHADOWMAP',
+					'#ifdef USE_SHADOWMAP' +
+					document.getElementById( 'PCSS' ).textContent
+				);
+
+				shader = shader.replace(
+					'#if defined( SHADOWMAP_TYPE_PCF )',
+					document.getElementById( 'PCSSGetShadow' ).textContent +
+					'#if defined( SHADOWMAP_TYPE_PCF )'
+				);
+
+				THREE.ShaderChunk.shadowmap_pars_fragment = shader;*/
+
+
+
+
+
+		
+
+			const renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
+			renderer.shadowMap.enabled = true;
+
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+			renderer.toneMappingExposure = 1;
+			renderer.outputEncoding = THREE.sRGBEncoding;
+			document.body.appendChild( renderer.domElement );
+
+			//USE Castom shader
+			//renderer.outputEncoding = THREE.sRGBEncoding;
+			//renderer.shadowMap.enabled = true;
+
+
+			const controls = new OrbitControls( camera, renderer.domElement );
+			
+			//camera.lookAt(new THREE.Vector3(0,0,0)); // Set look at coordinate like this
+
+
+
+			//Add CURVE
+			var pointsPath = new THREE.CurvePath();
+			const bezierLine = new THREE.CubicBezierCurve3(
+						new THREE.Vector3(  1,   0, -1 ),
+						new THREE.Vector3(  1, 0,  1 ),
+                        new THREE.Vector3( -1,   0,  1 ),
+	                    new THREE.Vector3( -1, 0, -1 ),
+    	
+						);  
+            pointsPath.add(bezierLine);
+			const materialF = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+			const pointsF = bezierLine.getPoints( 50 );
+            const geometryF = new THREE.BufferGeometry().setFromPoints( pointsF );
+
+			const curveObject = new THREE.Line( geometryF, materialF );
+
+            scene.add(curveObject);
+
+			fraction = 0;
+			radiansGo = 0;
+			up = new THREE.Vector3( 0,0,1 );
+			upGo = new THREE.Vector3( 0,1,0 );
+			axis = new THREE.Vector3( );
+			axisGo = new THREE.Vector3( );
+
+			//---------------------------------------------------
+		
+
+			
+			
+            
+			//START_LIGTH
+			const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.3 );
+			directionalLight.position.set( 2, 8, 4 );
+			directionalLight.shadow.mapSize.width = 2048; 
+			directionalLight.shadow.mapSize.height = 2048; 
+			directionalLight.shadow.radius = 20;
+			directionalLight.shadow.camera.far = 20;
+			directionalLight.castShadow = true;
+			scene.add( directionalLight );
+            scene.add( new THREE.CameraHelper( directionalLight.shadow.camera ) );
+            //END_LIGTH
+			
+
+
+	
+		
+
+			const light = new THREE.AmbientLight( 0x404040 ); // soft white light
+            scene.add( light );
+
+			const light2 = new THREE.HemisphereLight( 0xffffbb, 0x080820, 0.5 );
+			scene.add( light2 );
+
+			//END_LIGTH
+
+			
+		
+
+			//START_BACKGROUND PLANE
+			const plane = new THREE.PlaneGeometry(200, 200);
+			//const materialPlane = new THREE.MeshBasicMaterial( { color: 0xF6D900 } );
+			const materialPlane = new THREE.MeshStandardMaterial( { color: 0xF6D900 } )
+			//const materialPlane = new THREE.MeshPhongMaterial( { color: 0xF6D900, specular: 0x111111 } );
+			const backMesh = new THREE.Mesh( plane, materialPlane );
+			
+			//Rotation by 90
+			backMesh.rotation.x=-1.5708;
+			backMesh.position.y=-0.25;
+			
+			backMesh.receiveShadow = true;
+			scene.add(backMesh);
+
+			//END_BACKGROUND PLANE
+
+			const axesHelper = new THREE.AxesHelper( 15 );
+			scene.add( axesHelper );
+
+
+			
+			
+
+
+			const backgroundColor = new THREE.Color( 0xF6D900 );
+			//scene.background = backgroundColor;
+
+
+			//START_CAMERA position
+			camera.position.z = 3;
+			camera.rotation.y = 3.15;
+			camera.rotation.x = 1.5;
+			camera.position.set( 0, 10 , 0 );
+			//END_CAMERA position
+			controls.update();
+
+
+           const loader = new GLTFLoader();
+           
+            const roughnessMipmapper = new RoughnessMipmapper( renderer );
+		  	loader.load( 'mesh/ball-lp2.glb', function ( gltf ) {
+
+	
+				gltf.scene.name = 'ball';
+				gltf.scene.castShadow=true;
+				gltf.scene.traverse( function( node ) {
+						if ( node.isMesh ) {
+                            node.castShadow = true;
+                            roughnessMipmapper.generateMipmaps( node.material );
+                        }
+				} );
+                scene.add( gltf.scene );
+
+
+            const hdri = new RGBELoader();
+            hdri.load( 'image/oberer_kuhberg_4k.pic', function ( texture ) {
+                texture.mapping = THREE.EquirectangularReflectionMapping;
+				scene.background = texture;
+				scene.environment = texture;
+             
+                        });
+				
+
+					
+
+
+					const animate2 = function () {
+						fraction +=0.002;
+      					   if (fraction > 1) {
+    						    	fraction = 0;
+  						  }  
+						newPosition = pointsPath.getPoint(fraction);
+    					tangent = pointsPath.getTangent(fraction);
+						gltf.scene.position.copy(newPosition);
+						axis.crossVectors( up, tangent ).normalize();
+						radians = Math.acos( up.dot( tangent ) );
+						gltf.scene.quaternion.setFromAxisAngle( axis, radians );
+
+						axisGo.crossVectors( upGo, tangent ).normalize();
+						radiansGo +=0.05;
+						axisGo.crossVectors( upGo, tangent ).normalize();
+						gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
+						controls.update();
+						
+
+
+					requestAnimationFrame( animate2 );
+
+					renderer.render( scene, camera );
+		    	};
+			animate2();
+            
+            }, undefined, function ( error ) {
+
+                console.error( error );
+
+				
+
+		} );
+		/*Scroll event
+        window.addEventListener("wheel", function(e) {
+						const ball = scene.getObjectByName( 'ball' );
+						ball.position.x += e.deltaX*0.001;
+						ball.position.z += e.deltaY*0.001;
+						ball.rotation.z += e.deltaX*(-0.01);
+						ball.rotation.x += e.deltaY*0.01;
+						}, true);*/
+		</script>
+	</body>
+</html>
