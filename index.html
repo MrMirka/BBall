@@ -122,6 +122,28 @@
 			scene.add( axesHelper );
 
 
+			// load a image resource
+			loader.load(
+				// resource URL
+				'./img/shadow.png',
+
+				// onLoad callback
+				function ( image ) {
+					const canvas = document.createElement( 'canvas' );
+					const context = canvas.getContext( '2d' );
+					context.drawImage( image, 2, 2 );
+				},
+
+				// onProgress callback currently not supported
+				undefined,
+
+				// onError callback
+				function () {
+					console.error( 'An error happened.' );
+				}
+			);
+
+
 			
 			
 
@@ -159,27 +181,7 @@
 
 			const loader = new THREE.ImageLoader();
 
-			// load a image resource
-			loader.load(
-				// resource URL
-				'./img/shadow.png',
-
-				// onLoad callback
-				function ( image ) {
-					// use the image, e.g. draw part of it on a canvas
-					const canvas = document.createElement( 'canvas' );
-					const context = canvas.getContext( '2d' );
-					context.drawImage( image, 2, 2 );
-				},
-
-				// onProgress callback currently not supported
-				undefined,
-
-				// onError callback
-				function () {
-					console.error( 'An error happened.' );
-				}
-			);
+			
 
             const hdri = new RGBELoader();
             hdri.load( './img/oberer_kuhberg_4k.pic', function ( texture ) {
