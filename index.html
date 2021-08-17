@@ -25,29 +25,6 @@
 			const scene = new THREE.Scene();
 			const camera = new THREE.PerspectiveCamera( 750, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-
-				// overwrite shadowmap code
-
-			/*	let shader = THREE.ShaderChunk.shadowmap_pars_fragment;
-
-				shader = shader.replace(
-					'#ifdef USE_SHADOWMAP',
-					'#ifdef USE_SHADOWMAP' +
-					document.getElementById( 'PCSS' ).textContent
-				);
-
-				shader = shader.replace(
-					'#if defined( SHADOWMAP_TYPE_PCF )',
-					document.getElementById( 'PCSSGetShadow' ).textContent +
-					'#if defined( SHADOWMAP_TYPE_PCF )'
-				);
-
-				THREE.ShaderChunk.shadowmap_pars_fragment = shader;*/
-
-
-
-
-
 		
 
 			const renderer = new THREE.WebGLRenderer();
@@ -60,14 +37,11 @@
 			renderer.outputEncoding = THREE.sRGBEncoding;
 			document.body.appendChild( renderer.domElement );
 
-			//USE Castom shader
-			//renderer.outputEncoding = THREE.sRGBEncoding;
-			//renderer.shadowMap.enabled = true;
+		
 
 
 			const controls = new OrbitControls( camera, renderer.domElement );
 			
-			//camera.lookAt(new THREE.Vector3(0,0,0)); // Set look at coordinate like this
 
 
 
@@ -132,9 +106,6 @@
 
 			//START_BACKGROUND PLANE
 			const plane = new THREE.PlaneGeometry(200, 200);
-			//const materialPlane = new THREE.MeshBasicMaterial( { color: 0xF6D900 } );
-			const materialPlane = new THREE.MeshStandardMaterial( { color: 0xF6D900 } )
-			//const materialPlane = new THREE.MeshPhongMaterial( { color: 0xF6D900, specular: 0x111111 } );
 			const backMesh = new THREE.Mesh( plane, materialPlane );
 			
 			//Rotation by 90
