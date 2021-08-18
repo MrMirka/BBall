@@ -248,6 +248,10 @@
 					requestAnimationFrame( animate );
 					renderer.render( scene, camera );
 		    	};
+				window.addEventListener("wheel", function(e) {
+						//const ball = scene.getObjectByName( 'ball' );
+						animate();
+						}, true);
 			//animate();
 			renderer.render( scene, camera );
             
@@ -259,10 +263,7 @@
 
 		} );
 		
-        window.addEventListener("wheel", function(e) {
-						//const ball = scene.getObjectByName( 'ball' );
-						animate();
-						}, true);
+        
 		</script>
 	</body>
 </html>
