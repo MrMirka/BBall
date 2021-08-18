@@ -256,10 +256,11 @@
 
 				const animate = function () {
 
-					if(!startAnimate & fraction >= 0 & fraction < 1){
-						fraction +=0.002;	
-						console.log("FORWARD "+fraction);	
+					if(!startAnimate || (fraction >= 0 & fraction < 1)){
+						fraction +=0.002;				
 						if (fraction > 1) {fraction = 1;}  
+						console.log("FORWARD "+fraction);	
+						startAnimate=true;
 									
 					} else{
 						fraction -=0.002;
