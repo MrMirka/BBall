@@ -121,12 +121,16 @@
 			const axesHelper = new THREE.AxesHelper( 15 );
 			scene.add( axesHelper );
 
-
+			
+			/*CANCEL LOADIMAGE
 			// load a image resource
 			const picloader = new THREE.ImageLoader();
 			picloader.load(
 				// resource URL
 				'./img/pic.jpeg',
+
+
+			
 
 				// onLoad callback
 				function ( image ) {
@@ -146,7 +150,35 @@
 				function () {
 					console.error( 'An error happened.' );
 				}
-			);
+			);*/
+
+			//+++++++++++++++++++++TEST IMAGE TEXTURE LOADER++++++++++++++++++++++++++++
+			const blendings = [
+					{ name: 'No', constant: THREE.NoBlending },
+					{ name: 'Normal', constant: THREE.NormalBlending },
+					{ name: 'Additive', constant: THREE.AdditiveBlending },
+					{ name: 'Subtractive', constant: THREE.SubtractiveBlending },
+					{ name: 'Multiply', constant: THREE.MultiplyBlending }
+				];
+
+			const map = textureLoader.load( './img/shadow.png' );	
+			const geo = new THREE.PlaneGeometry( 100, 100 );
+			addImageRow(map,2);
+
+
+			function addImageRow( map, y ) {
+					const blending = blendings[ 1 ];
+					const material = new THREE.MeshBasicMaterial( { map: map } );
+					material.transparent = true;
+					material.blending = blending.constant;
+					const x = ( 1 - blendings.length / 2 ) * 110;
+					const z = 0;
+					let mesh = new THREE.Mesh( geo, material );
+					mesh.position.set( x, y, z );
+					scene.add( mesh );		
+}
+
+
 
 
 			const backgroundColor = new THREE.Color( 0xF6D900 );
