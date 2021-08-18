@@ -20,14 +20,13 @@
             import { RGBELoader } from './threejs-dev/examples/jsm/loaders/RGBELoader.js';
             import { RoughnessMipmapper } from './threejs-dev/examples/jsm/utils/RoughnessMipmapper.js';
 
-			var fraction, newPosition, tangent, axis, radians, pointsPath, up, axisGo, upGo, radiansGo, shadowMesh;
+			var fraction, newPosition, tangent, axis, radians, pointsPath, up, axisGo, upGo, radiansGo, shadowMesh, StartBall;
 
 			const scene = new THREE.Scene();
 			const camera = new THREE.PerspectiveCamera( 750, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
 			const textureLoader = new THREE.TextureLoader();
 
-			let StartBall = new THREE.Vector3( -1, 0, -1 );
 
 
 		
@@ -212,7 +211,9 @@
 						roughnessMipmapper.generateMipmaps( node.material );
                     }
 				} );
-				gltf.scene.position.set(StartBall);
+
+				StartBall = pointsPath.getPoint(fraction);
+				gltf.scene.position.copy(StartBall);
                 scene.add( gltf.scene );
 		
 			
