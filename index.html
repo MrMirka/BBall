@@ -259,6 +259,7 @@
 					if(!startAnimate && fraction >= 0 && fraction < 1){
 						fraction +=0.002;	
 						console.log("FORWARD "+fraction);	
+						if (fraction > 1) {fraction = 1;}  
 									
 					} else{
 						fraction -=0.002;
