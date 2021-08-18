@@ -201,7 +201,7 @@
             const roughnessMipmapper = new RoughnessMipmapper( renderer );
 		  	loader.load( './mesh/ball-lp2.glb', function ( gltf ) {
 
-	
+				сonsole.log('MESH size '+gltf.scene.radius());
 				gltf.scene.name = 'ball';
 				gltf.scene.castShadow=true;
 				gltf.scene.traverse( function( node ) {
@@ -211,9 +211,8 @@
                         }
 				} );
                 scene.add( gltf.scene );
-				сonsole.log('MESH size '+gltf.scene.radius());
+		
 			
-			//Loaders
 
 			
 
