@@ -228,9 +228,11 @@
 					newPosition = pointsPath.getPoint(fraction);
 					tangent = pointsPath.getTangent(fraction);
 					gltf.scene.position.copy(newPosition);
+					shadowMesh.position.copy(newPosition);
 					axis.crossVectors( up, tangent ).normalize();
 					radians = Math.acos(up.dot( tangent ) );
 					gltf.scene.quaternion.setFromAxisAngle( axis, radians );
+					shadowMesh.quaternion.setFromAxisAngle( axis, radians );
 					
 					//Rotate Ball
 					axisGo.crossVectors( upGo, tangent ).normalize();
