@@ -22,6 +22,7 @@
 
 			var fraction, newPosition, tangent, axis, radians, pointsPath, up, axisGo, upGo, radiansGo, shadowMesh, StartBall;
 			var startAnimate = false;
+			var startScroll = false;
 
 			const scene = new THREE.Scene();
 			const camera = new THREE.PerspectiveCamera( 750, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -227,10 +228,12 @@
 					renderer.render( scene, camera );
 				});
 					
-
-				const animate = function () {
+				//++++++++++++++++++TEST NEW ANIMATION++++++++++++++++++++++
+				const animate2 = function () {
+					
 					fraction +=0.002;
 					if (fraction > 1) {fraction = 0;}  
+
 					//Move ball
 					newPosition = pointsPath.getPoint(fraction);
 					tangent = pointsPath.getTangent(fraction);
@@ -249,9 +252,40 @@
 					requestAnimationFrame( animate );
 					renderer.render( scene, camera );
 		    	};
+				//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+				const animate2 = function () {
+					if(!startAnimate && fraction>=0 && fraction < 1){
+						fraction +=0.002;	
+						startAnimate=false;					
+					}
+					
+					if (startAnimate && fraction > 1) {
+						fraction -=0.002;
+						startAnimate=true;
+					}  
+					//Move ball
+					newPosition = pointsPath.getPoint(fraction);
+					tangent = pointsPath.getTangent(fraction);
+					gltf.scene.position.copy(newPosition);
+					shadowMesh.position.copy(newPosition);
+					axis.crossVectors( up, tangent ).normalize();
+					radians = Math.acos(up.dot( tangent ) );
+					gltf.scene.quaternion.setFromAxisAngle( axis, radians );
+					
+					//Rotate Ball
+					axisGo.crossVectors( upGo, tangent ).normalize();
+					radiansGo +=0.05;
+					axisGo.crossVectors( upGo, tangent ).normalize();
+					gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
+					controls.update();
+					requestAnimationFrame( animate );
+					renderer.render( scene, camera );
+		    	};
+
 				window.addEventListener("wheel", function(e) {
 						//const ball = scene.getObjectByName( 'ball' );
-						if(!startAnimate){animate(); startAnimate=true;};
+						if(!startScroll){animate2(); startScroll=true;};
 						}, true);
 			//animate();
 			renderer.render( scene, camera );
