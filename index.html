@@ -198,61 +198,52 @@
 			controls.update();
 
 
-           const loader = new GLTFLoader();
+            const loader = new GLTFLoader();
            
-            const roughnessMipmapper = new RoughnessMipmapper( renderer );
-		  	loader.load( './mesh/ball-lp2.glb', function ( gltf ) {
-
-				
-				console.log("MESH size "+gltf.scene.radius);
+        	const roughnessMipmapper = new RoughnessMipmapper( renderer );
+		  	loader.load( './mesh/ball-lp2.glb', function ( gltf ) { 
 				gltf.scene.name = 'ball';
 				gltf.scene.castShadow=true;
 				gltf.scene.traverse( function( node ) {
 					if ( node.isMesh ) {
-                        //node.castShadow = true;
-                        roughnessMipmapper.generateMipmaps( node.material );
+                        //node.castShadow = true;    
                     }
 				} );
                 scene.add( gltf.scene );
 		
 			
-            const hdri = new RGBELoader();
-            hdri.load( './img/oberer_kuhberg_4k.pic', function ( texture ) {
-                texture.mapping = THREE.EquirectangularReflectionMapping;
-				//scene.background = texture;
-				scene.environment = texture;
-    	     });
-				
+				const hdri = new RGBELoader();
+				hdri.load( './img/oberer_kuhberg_4k.pic', function ( texture ) {
+					texture.mapping = THREE.EquirectangularReflectionMapping;
+					//scene.background = texture;
+					scene.environment = texture;
+				});
+					
 
 					
 
 
-					const animate2 = function () {
-						fraction +=0.002;
-      					   if (fraction > 1) {
-    						    	fraction = 0;
-  						  }  
-						newPosition = pointsPath.getPoint(fraction);
-    					tangent = pointsPath.getTangent(fraction);
-						gltf.scene.position.copy(newPosition);
-						axis.crossVectors( up, tangent ).normalize();
-						radians = Math.acos(up.dot( tangent ) );
-						gltf.scene.quaternion.setFromAxisAngle( axis, radians );
-						
-						//Rotate Ball
-						axisGo.crossVectors( upGo, tangent ).normalize();
-						radiansGo +=0.05;
-						axisGo.crossVectors( upGo, tangent ).normalize();
-						gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
-						controls.update();
-						
-
-
-					requestAnimationFrame( animate2 );
-
+				const animate = function () {
+					fraction +=0.002;
+					if (fraction > 1) {fraction = 0;}  
+					//Move ball
+					newPosition = pointsPath.getPoint(fraction);
+					tangent = pointsPath.getTangent(fraction);
+					gltf.scene.position.copy(newPosition);
+					axis.crossVectors( up, tangent ).normalize();
+					radians = Math.acos(up.dot( tangent ) );
+					gltf.scene.quaternion.setFromAxisAngle( axis, radians );
+					
+					//Rotate Ball
+					axisGo.crossVectors( upGo, tangent ).normalize();
+					radiansGo +=0.05;
+					axisGo.crossVectors( upGo, tangent ).normalize();
+					gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
+					controls.update();
+					requestAnimationFrame( animate );
 					renderer.render( scene, camera );
 		    	};
-			animate2();
+			animate();
             
             }, undefined, function ( error ) {
 
