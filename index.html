@@ -166,18 +166,16 @@
 
 			const map = textureLoader.load( './img/shadow.png' );	
 			const geo = new THREE.PlaneGeometry( 10, 10 );
-			addImageRow(map,2);
+			addImageRow(map);
 
 
-			function addImageRow( map, y ) {
+			function addImageRow( map) {
 					const blending = blendings[ 1 ];
 					const material = new THREE.MeshBasicMaterial( { map: map } );
 					material.transparent = true;
 					material.blending = blending.constant;
-					const x = ( 1 - blendings.length / 2 ) * 110;
-					const z = 0;
 					let mesh = new THREE.Mesh( geo, material );
-					mesh.position.set( x, y, z );
+					mesh.position.set( 0, 0, 0 );
 					scene.add( mesh );		
 }
 			//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
