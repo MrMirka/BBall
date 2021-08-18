@@ -249,12 +249,12 @@
 					axisGo.crossVectors( upGo, tangent ).normalize();
 					gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
 					controls.update();
-					requestAnimationFrame( animate );
+					requestAnimationFrame( animate2 );
 					renderer.render( scene, camera );
 		    	};
 				//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-				const animate2 = function () {
+				const animate = function () {
 					if(!startAnimate && fraction>=0 && fraction < 1){
 						fraction +=0.002;	
 						startAnimate=false;					
@@ -285,7 +285,7 @@
 
 				window.addEventListener("wheel", function(e) {
 						//const ball = scene.getObjectByName( 'ball' );
-						if(!startScroll){animate2(); startScroll=true;};
+						if(!startScroll){animate(); startScroll=true;};
 						}, true);
 			//animate();
 			renderer.render( scene, camera );
