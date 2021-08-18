@@ -232,7 +232,7 @@
 					axis.crossVectors( up, tangent ).normalize();
 					radians = Math.acos(up.dot( tangent ) );
 					gltf.scene.quaternion.setFromAxisAngle( axis, radians );
-					shadowMesh.quaternion.setFromAxisAngle( axis, radians );
+					//shadowMesh.quaternion.setFromAxisAngle( axis, radians );
 					
 					//Rotate Ball
 					axisGo.crossVectors( upGo, tangent ).normalize();
