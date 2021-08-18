@@ -193,6 +193,7 @@
 			camera.rotation.x = 1.5;
 			camera.position.set( 0, 10 , 0 );
 			//END_CAMERA position
+			
 			controls.update();
 
 
@@ -202,30 +203,24 @@
 		  	loader.load( './mesh/ball-lp2.glb', function ( gltf ) {
 
 				
-				console.log("MESH size");
+				console.log("MESH size "+gltf.scene.radius);
 				gltf.scene.name = 'ball';
 				gltf.scene.castShadow=true;
 				gltf.scene.traverse( function( node ) {
-						if ( node.isMesh ) {
-                            //node.castShadow = true;
-                            roughnessMipmapper.generateMipmaps( node.material );
-                        }
+					if ( node.isMesh ) {
+                        //node.castShadow = true;
+                        roughnessMipmapper.generateMipmaps( node.material );
+                    }
 				} );
                 scene.add( gltf.scene );
 		
 			
-
-			
-
-			
-
             const hdri = new RGBELoader();
             hdri.load( './img/oberer_kuhberg_4k.pic', function ( texture ) {
                 texture.mapping = THREE.EquirectangularReflectionMapping;
 				//scene.background = texture;
 				scene.environment = texture;
-             
-                        });
+    	     });
 				
 
 					
