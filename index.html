@@ -132,7 +132,7 @@
 				function ( image ) {
 					const canvas = document.createElement( 'canvas' );
 					const context = canvas.getContext( '2d' );
-					context.drawImage( image, 100, 100 );
+					context.drawImage( image, 1, 1 );
 					
 				},
 
@@ -144,10 +144,6 @@
 					console.error( 'An error happened.' );
 				}
 			);
-
-
-			
-			
 
 
 			const backgroundColor = new THREE.Color( 0xF6D900 );
@@ -206,9 +202,10 @@
     					tangent = pointsPath.getTangent(fraction);
 						gltf.scene.position.copy(newPosition);
 						axis.crossVectors( up, tangent ).normalize();
-						radians = Math.acos( up.dot( tangent ) );
+						radians = Math.acos(up.dot( tangent ) );
 						gltf.scene.quaternion.setFromAxisAngle( axis, radians );
-
+						
+						//Rotate Ball
 						axisGo.crossVectors( upGo, tangent ).normalize();
 						radiansGo +=0.05;
 						axisGo.crossVectors( upGo, tangent ).normalize();
