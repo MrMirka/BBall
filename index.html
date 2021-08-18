@@ -27,6 +27,8 @@
 
 			const textureLoader = new THREE.TextureLoader();
 
+			let StartBall = new THREE.Vector3( -1, 0, -1 );
+
 
 		
 
@@ -210,6 +212,7 @@
 						roughnessMipmapper.generateMipmaps( node.material );
                     }
 				} );
+				gltf.scene.position.set(StartBall);
                 scene.add( gltf.scene );
 		
 			
