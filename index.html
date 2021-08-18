@@ -165,7 +165,7 @@
 				];
 
 			const map = textureLoader.load( './img/shadow.png' );	
-			const geo = new THREE.PlaneGeometry( 10, 10 );
+			const geo = new THREE.PlaneGeometry( 1, 1 );
 			addImageRow(map);
 
 
@@ -211,6 +211,7 @@
                         }
 				} );
                 scene.add( gltf.scene );
+				сonsole.log('MESH size '+gltf.scene.radius());
 			
 			//Loaders
 
