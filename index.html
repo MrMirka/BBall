@@ -249,11 +249,11 @@
 					requestAnimationFrame( animate );
 					renderer.render( scene, camera );
 		    	};
-				window.addEventListener("wheel", function(e) {
+				/*window.addEventListener("wheel", function(e) {
 						//const ball = scene.getObjectByName( 'ball' );
 						if(!startAnimate){animate(); startAnimate=true;};
-						}, true);
-			//animate();
+						}, true);*/
+			animate();
 			renderer.render( scene, camera );
             
             }, undefined, function ( error ) {
