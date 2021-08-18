@@ -20,7 +20,7 @@
             import { RGBELoader } from './threejs-dev/examples/jsm/loaders/RGBELoader.js';
             import { RoughnessMipmapper } from './threejs-dev/examples/jsm/utils/RoughnessMipmapper.js';
 
-			var fraction, newPosition, tangent, axis, radians, pointsPath, up, axisGo, upGo, radiansGo;
+			var fraction, newPosition, tangent, axis, radians, pointsPath, up, axisGo, upGo, radiansGo, shadowMesh;
 
 			const scene = new THREE.Scene();
 			const camera = new THREE.PerspectiveCamera( 750, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -174,10 +174,10 @@
 					const material = new THREE.MeshBasicMaterial( { map: map } );
 					material.transparent = true;
 					material.blending = blending.constant;
-					let mesh = new THREE.Mesh( geo, material );
-					mesh.position.set( 0, 0, 0 );
-					mesh.rotation.x = -1.5708;
-					scene.add( mesh );		
+					shadowMesh = new THREE.Mesh( geo, material );
+					shadowMesh.position.set( 0, 0, 0 );
+					shadowMesh.rotation.x = -1.5708;
+					scene.add( shadowMesh );		
 }
 			//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -207,6 +207,7 @@
 				gltf.scene.traverse( function( node ) {
 					if ( node.isMesh ) {
                         //node.castShadow = true;    
+						roughnessMipmapper.generateMipmaps( node.material );
                     }
 				} );
                 scene.add( gltf.scene );
@@ -219,9 +220,6 @@
 					scene.environment = texture;
 				});
 					
-
-					
-
 
 				const animate = function () {
 					fraction +=0.002;
