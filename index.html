@@ -255,16 +255,18 @@
 				//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 				const animate = function () {
-					if(!startAnimate && fraction>=0 && fraction < 1){
+
+					if(!startAnimate && fraction >= 0 && fraction < 1){
 						fraction +=0.002;	
-						startAnimate=false;					
+						console.log("FORWARD "+fraction);	
+									
+					} else{
+						fraction -=0.002;
+						console.log("BACK "+fraction);
+						if(fraction=0){startAnimate = false}
+						
 					}
 					
-					if (startAnimate && fraction > 1) {
-						fraction -=0.002;
-						startAnimate=true;
-					}  
-					console.log(fraction);
 					//Move ball
 					newPosition = pointsPath.getPoint(fraction);
 					tangent = pointsPath.getTangent(fraction);
