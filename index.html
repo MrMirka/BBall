@@ -204,11 +204,11 @@
 					if(isScroll){
 						if(!startAnimate & fraction >= 0 & fraction < 1){
 							fraction +=0.002;	
-							camera.position.y-=0.001;			
+							if(camera.position.y<10.5){camera.position.y-=0.001;}			
 							if (fraction > 1) {fraction = 1;startAnimate = true; isScroll=false; startScroll=false;}  					
 						} else{
 							fraction -=0.002;
-							camera.position.y+=0.001;
+							if(camera.position.y>10){camera.position.y+=0.001;}
 							if(fraction<=0){fraction = 0; startAnimate = false; isScroll=false; startScroll=false;}
 						}
 						
