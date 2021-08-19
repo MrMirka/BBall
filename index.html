@@ -241,7 +241,6 @@
 							//controls.update();
 					}
 						isGo=false;
-						console.log("ANIMATE_ " + isGo);
 				};
 						requestAnimationFrame( animate );
 						renderer.render( scene, camera );
@@ -252,7 +251,6 @@
 
 				window.addEventListener("wheel", function(e) {
 						isGo=true;
-						console.log("EVENT_ " + isGo);
 						//const ball = scene.getObjectByName( 'ball' );
 						if(!startScroll){startScroll=true; isScroll=true;};
 						}, true);
