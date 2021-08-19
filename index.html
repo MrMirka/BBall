@@ -243,12 +243,14 @@
 						requestAnimationFrame( animate );
 						renderer.render( scene, camera );
 						isGo=false;
+						console.log("ANIMATE_ " + isGo);
 					};
 					
 				};
 
 				window.addEventListener("wheel", function(e) {
 						isGo=true;
+						console.log("EVENT_ " + isGo);
 						//const ball = scene.getObjectByName( 'ball' );
 						if(!startScroll){startScroll=true; isScroll=true;};
 						}, true);
