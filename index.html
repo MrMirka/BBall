@@ -215,11 +215,11 @@
 						if(isScroll){
 							if(!startAnimate & fraction >= 0 & fraction < 1 & !isUp(deltaScroll)){
 								fraction +=GetSpeedDelta(deltaScroll);	
-								if(camera.position.y>5){camera.position.y-=0.01;}			
+								if(camera.position.y>5){camera.position.y-=fraction;}			
 								if (fraction > 1) {fraction = 1;startAnimate = false; isScroll=false; startScroll=false; isGo=false;}  					
 							} else{
 								fraction -=GetSpeedDelta(deltaScroll);
-								if(camera.position.y<10){camera.position.y+=0.01;}
+								if(camera.position.y<10){camera.position.y+=fraction;}
 								if(fraction<=0){fraction = 0; startAnimate = false; isScroll=false; startScroll=false; isGo=false;}
 							}
 							
