@@ -211,7 +211,7 @@
 					if(isGo){
 						if(isScroll){
 							//console.log("Camera position "+camera.position.y);
-							if(!startAnimate & fraction >= 0 & fraction < 1 & isUp(deltaScroll)){
+							if(!startAnimate & fraction >= 0 & fraction < 1 & !isUp(deltaScroll)){
 								fraction +=0.002;	
 								if(camera.position.y>5){camera.position.y-=0.01;}			
 								if (fraction > 1) {fraction = 1;startAnimate = true; isScroll=false; startScroll=false;}  					
@@ -232,7 +232,7 @@
 							
 							//Rotate Ball
 							axisGo.crossVectors( upGo, tangent ).normalize();
-							if(!startAnimate){
+							if(!startAnimate & isUp(deltaScroll)){
 								radiansGo +=0.05;
 							}else{
 								radiansGo -=0.05;
