@@ -214,11 +214,11 @@
 							if(!startAnimate & fraction >= 0 & fraction < 1 & !isUp(deltaScroll)){
 								fraction +=0.002;	
 								if(camera.position.y>5){camera.position.y-=0.01;}			
-								if (fraction > 1) {fraction = 1;startAnimate = true; isScroll=false; startScroll=false;}  					
+								if (fraction > 1) {fraction = 1;startAnimate = true; isScroll=false; startScroll=false; isGo=false;}  					
 							} else{
 								fraction -=0.002;
 								if(camera.position.y<10){camera.position.y+=0.01;}
-								if(fraction<=0){fraction = 0; startAnimate = false; isScroll=false; startScroll=false;}
+								if(fraction<=0){fraction = 0; startAnimate = false; isScroll=false; startScroll=false; isGo=false;}
 							}
 							
 							//Move ball
