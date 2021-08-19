@@ -204,12 +204,14 @@
 					renderer.render( scene, camera );
 				});
 					
-
+				/*Animate FUNCTION
+				isGo - проверяет активенли в даннвй мемент механизм скрода. Устанавливается в True непосредственно в EventListner и в False в конце функции animate.Это обеспечивает остановку мячика когда скролл не рабатает
+				is Scroll - тормозит всю анимаци/
+				*/
 				const animate = function () {	
 					
 					if(isGo){
-						if(isScroll){
-							//console.log("Camera position "+camera.position.y);
+					//	if(isScroll){
 							if(!startAnimate & fraction >= 0 & fraction < 1 & !isUp(deltaScroll)){
 								fraction +=0.002;	
 								if(camera.position.y>5){camera.position.y-=0.01;}			
@@ -238,8 +240,7 @@
 							}
 							axisGo.crossVectors( upGo, tangent ).normalize();
 							gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
-							//controls.update();
-						}
+					//	}
 						isGo=false;
 					};
 					requestAnimationFrame( animate );
@@ -249,7 +250,6 @@
 				window.addEventListener("wheel", function(e) {
 						isGo=true;
 						deltaScroll = e.deltaY;
-						//const ball = scene.getObjectByName( 'ball' );
 						if(!startScroll){startScroll=true; isScroll=true;};
 						}, true);
 			animate();
@@ -261,6 +261,7 @@
 
 		} );
 
+		//Проверяем направление скрола
 		function isUp(deltaY){
 			if(deltaY>0) {
 				return true;
