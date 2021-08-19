@@ -242,8 +242,9 @@
 					}
 						requestAnimationFrame( animate );
 						renderer.render( scene, camera );
+						isGo=false;
 					};
-					isGo=false;
+					
 				};
 
 				window.addEventListener("wheel", function(e) {
