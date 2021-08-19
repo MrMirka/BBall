@@ -203,7 +203,7 @@
 					
 
 				const animate = function () {	
-					console.log(deltaScroll);
+					//console.log(deltaScroll);
 					//delta scroll апускаем анимацию в завиисимости от прокрутки колеса мышки
 					if(deltaScroll!=1 && deltaScroll!=-1){
 						if(isScroll){
@@ -244,9 +244,10 @@
 				};
 
 				window.addEventListener("wheel", function(e) {
+						console.log(e);
 						deltaScroll=e.deltaY;
 						//const ball = scene.getObjectByName( 'ball' );
-						if(!startScroll){startScroll=true; isScroll=true; deltaScroll=2;};
+						if(!startScroll){startScroll=true; isScroll=true;};
 						}, true);
 			animate();
 			renderer.render( scene, camera );
