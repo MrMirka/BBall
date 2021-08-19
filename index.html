@@ -246,6 +246,7 @@
 
 				window.addEventListener("wheel", function(e) {
 						deltaScroll = e.deltaY;
+						console.log(e.deltaY);
 						//const ball = scene.getObjectByName( 'ball' );
 						if(!startScroll){startScroll=true; isScroll=true;};
 						}, true);
@@ -261,16 +262,8 @@
 		} );
 
 		function isGo(){
-			console.log(deltaScroll);
 			if(deltaScroll==0){ return true;}
-			let item=0;
-			for(let i=0; i<21; i++){
-				item+=deltaScroll;
-			}
-			console.log(deltaScroll+ " "+ item);
-			if((item/20)==deltaScroll){
-				return true;
-			} else return false;
+			
 		}
 		
         
