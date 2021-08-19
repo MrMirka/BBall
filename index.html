@@ -240,11 +240,13 @@
 							gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
 							//controls.update();
 					}
-						requestAnimationFrame( animate );
-						renderer.render( scene, camera );
 						isGo=false;
 						console.log("ANIMATE_ " + isGo);
-					};
+				};
+						requestAnimationFrame( animate );
+						renderer.render( scene, camera );
+						
+					
 					
 				};
 
