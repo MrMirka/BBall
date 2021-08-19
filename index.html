@@ -200,7 +200,7 @@
 					
 
 				const animate = function () {
-
+					startScroll=true;
 					if(startScroll){
 						if(!startAnimate & fraction >= 0 & fraction < 1){
 							fraction +=0.002;				
@@ -240,7 +240,7 @@
 
 				window.addEventListener("wheel", function(e) {
 						//const ball = scene.getObjectByName( 'ball' );
-						if(!startScroll){animate(); startScroll=true;};
+						if(!startScroll){animate();};
 						}, true);
 			//animate();
 			renderer.render( scene, camera );
