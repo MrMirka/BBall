@@ -201,7 +201,7 @@
 					
 
 				const animate = function () {
-					console.log("START ANIMATE");
+					//console.log("START ANIMATE");
 					if(isScroll){
 						if(!startAnimate & fraction >= 0 & fraction < 1){
 							fraction +=0.002;				
@@ -241,9 +241,9 @@
 
 				window.addEventListener("wheel", function(e) {
 						//const ball = scene.getObjectByName( 'ball' );
-						if(!startScroll){animate(); startScroll=true; isScroll=true;};
+						if(!startScroll){startScroll=true; isScroll=true;};
 						}, true);
-			//animate();
+			animate();
 			renderer.render( scene, camera );
             
             }, undefined, function ( error ) {
