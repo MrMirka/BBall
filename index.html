@@ -201,37 +201,39 @@
 
 				const animate = function () {
 
-					if(!startAnimate & fraction >= 0 & fraction < 1){
-						fraction +=0.002;				
-						if (fraction > 1) {fraction = 1;startAnimate = true}  
-						//console.log("FORWARD "+fraction);	
-									
-					} else{
-						fraction -=0.002;
-						//console.log("BACK "+fraction);
-						if(fraction<=0){fraction = 0; startAnimate = false}
+					if(startScroll){
+						if(!startAnimate & fraction >= 0 & fraction < 1){
+							fraction +=0.002;				
+							if (fraction > 1) {fraction = 1;startAnimate = true; startScroll=false}  
+							//console.log("FORWARD "+fraction);	
+										
+						} else{
+							fraction -=0.002;
+							//console.log("BACK "+fraction);
+							if(fraction<=0){fraction = 0; startAnimate = false; startScroll=false}
+							
+						}
 						
-					}
-					
-					//Move ball
-					newPosition = pointsPath.getPoint(fraction);
-					tangent = pointsPath.getTangent(fraction);
-					gltf.scene.position.copy(newPosition);
-					shadowMesh.position.copy(newPosition);
-					axis.crossVectors( up, tangent ).normalize();
-					radians = Math.acos(up.dot( tangent ) );
-					gltf.scene.quaternion.setFromAxisAngle( axis, radians );
-					
-					//Rotate Ball
-					axisGo.crossVectors( upGo, tangent ).normalize();
-					if(!startAnimate){
-						radiansGo +=0.05;
-					}else{
-						radiansGo -=0.05;
-					}
-					axisGo.crossVectors( upGo, tangent ).normalize();
-					gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
-					//controls.update();
+						//Move ball
+						newPosition = pointsPath.getPoint(fraction);
+						tangent = pointsPath.getTangent(fraction);
+						gltf.scene.position.copy(newPosition);
+						shadowMesh.position.copy(newPosition);
+						axis.crossVectors( up, tangent ).normalize();
+						radians = Math.acos(up.dot( tangent ) );
+						gltf.scene.quaternion.setFromAxisAngle( axis, radians );
+						
+						//Rotate Ball
+						axisGo.crossVectors( upGo, tangent ).normalize();
+						if(!startAnimate){
+							radiansGo +=0.05;
+						}else{
+							radiansGo -=0.05;
+						}
+						axisGo.crossVectors( upGo, tangent ).normalize();
+						gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
+						//controls.update();
+				}
 					requestAnimationFrame( animate );
 					renderer.render( scene, camera );
 		    	};
