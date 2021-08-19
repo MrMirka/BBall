@@ -240,6 +240,11 @@
 
 				window.addEventListener("wheel", function(e) {
 						console.log(e);
+						if(e.deltaY>0) {
+							console.log("UP");
+						}else{
+							console.log("DOWN");
+						}
 						//const ball = scene.getObjectByName( 'ball' );
 						if(!startScroll){startScroll=true; isScroll=true;};
 						}, true);
