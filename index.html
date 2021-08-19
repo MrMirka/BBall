@@ -21,7 +21,7 @@
             import { RoughnessMipmapper } from './threejs-dev/examples/jsm/utils/RoughnessMipmapper.js';
 
 			var fraction, newPosition, tangent, axis, radians, pointsPath, up, axisGo, upGo, radiansGo, shadowMesh, StartBall;
-			var startAnimate = false;
+			var startAnimate = false; //Направление движение мячика
 			var startScroll = false;
 			var isScroll = false; //Проверка активен ли скролл
 			var deltaScroll = 0;
@@ -207,6 +207,7 @@
 				/*Animate FUNCTION
 				isGo - проверяет активенли в даннвй мемент механизм скрода. Устанавливается в True непосредственно в EventListner и в False в конце функции animate.Это обеспечивает остановку мячика когда скролл не рабатает
 				is Scroll - тормозит всю анимаци/
+				startAnimate
 				*/
 				const animate = function () {	
 					
@@ -271,12 +272,12 @@
 		};
 
 		function GetSpeedDelta(deltaY){
-			console.log(Math.abs(deltaY)/2000);
+			console.log( "POSITION "+ Math.abs(deltaY)/2000);
 			return Math.abs(deltaY)/2000;
 			//return 0.002;
 		}
 		function GetSpeedDeltaRotate(deltaY){
-			console.log(Math.abs(deltaY)/200);
+			console.log("ROTATION "+Math.abs(deltaY)/200);
 			return Math.abs(deltaY)/200;
 			//return 0.05;
 		}
