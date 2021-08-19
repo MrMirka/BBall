@@ -234,9 +234,9 @@
 							//Rotate Ball
 							axisGo.crossVectors( upGo, tangent ).normalize();
 							if(!startAnimate & !isUp(deltaScroll)){
-								radiansGo +=GetSpeedDeltaRotate(deltaScroll);
+								radiansGo +=0.05;
 							}else{
-								radiansGo -=GetSpeedDeltaRotate(deltaScroll);
+								radiansGo -=0.05;
 							}
 							axisGo.crossVectors( upGo, tangent ).normalize();
 							gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
@@ -271,10 +271,12 @@
 		};
 
 		function GetSpeedDelta(deltaY){
-			return Math.abs(deltaY)/3000;
+			//return Math.abs(deltaY)/3000;
+			return 0.002;
 		}
 		function GetSpeedDeltaRotate(deltaY){
-			return Math.abs(deltaY)/1000;
+			//return Math.abs(deltaY)/1000;
+			return 0.05;
 		}
 
 		</script>
