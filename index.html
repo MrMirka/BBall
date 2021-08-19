@@ -261,6 +261,7 @@
 		} );
 
 		function isGo(){
+			console.log(deltaScroll);
 			if(deltaScroll==0){ return true;}
 			let item;
 			for(let i=0; i<21; i++){
@@ -269,7 +270,7 @@
 			console.log(deltaScroll+ " "+ item);
 			if((item/20)==deltaScroll){
 				return true;
-			}else return false;
+			} else return false;
 
 		}
 		
