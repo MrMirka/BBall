@@ -46,7 +46,7 @@
 		
 
 
-			const controls = new OrbitControls( camera, renderer.domElement );
+			//const controls = new OrbitControls( camera, renderer.domElement );
 			
 
 
@@ -256,7 +256,7 @@
 					}
 					axisGo.crossVectors( upGo, tangent ).normalize();
 					gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
-					controls.update();
+					//controls.update();
 					requestAnimationFrame( animate );
 					renderer.render( scene, camera );
 		    	};
