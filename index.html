@@ -67,7 +67,7 @@
 
 			const curveObject = new THREE.Line( geometryF, materialF );
 
-            scene.add(curveObject);
+            //scene.add(curveObject);
 
 			fraction = 0;
 			radiansGo = 0;
@@ -91,7 +91,7 @@
 			directionalLight.shadow.camera.far = 20;
 			//directionalLight.castShadow = true;
 			scene.add( directionalLight );
-            scene.add( new THREE.CameraHelper( directionalLight.shadow.camera ) );
+            //scene.add( new THREE.CameraHelper( directionalLight.shadow.camera ) );
             //END_LIGTH
 			
 
@@ -124,39 +124,9 @@
 
 			//END_BACKGROUND PLANE
 
-			const axesHelper = new THREE.AxesHelper( 15 );
-			scene.add( axesHelper );
+			//const axesHelper = new THREE.AxesHelper( 15 );
+			//scene.add( axesHelper );
 
-			
-			/*CANCEL LOADIMAGE
-			// load a image resource
-			const picloader = new THREE.ImageLoader();
-			picloader.load(
-				// resource URL
-				'./img/pic.jpeg',
-
-
-			
-
-				// onLoad callback
-				function ( image ) {
-					const canvas = document.createElement( 'canvas' );
-					const context = canvas.getContext( '2d' );
-					canvas.width=100;
-					canvas.height=100;
-					context.drawImage( image, 0, 0 );
-					console.log(image);
-					
-				},
-
-				// onProgress callback currently not supported
-				undefined,
-
-				// onError callback
-				function () {
-					console.error( 'An error happened.' );
-				}
-			);*/
 
 			//+++++++++++++++++++++TEST IMAGE TEXTURE LOADER++++++++++++++++++++++++++++
 			const blendings = [
@@ -228,7 +198,7 @@
 					renderer.render( scene, camera );
 				});
 					
-				//++++++++++++++++++TEST NEW ANIMATION++++++++++++++++++++++
+				//++++++++++++++++++TEST NEW ANIMATION++++++++++++++++++++++NOT USE
 				const animate2 = function () {
 					
 					fraction +=0.002;
@@ -259,11 +229,11 @@
 					if(!startAnimate & fraction >= 0 & fraction < 1){
 						fraction +=0.002;				
 						if (fraction > 1) {fraction = 1;startAnimate = true}  
-						console.log("FORWARD "+fraction);	
+						//console.log("FORWARD "+fraction);	
 									
 					} else{
 						fraction -=0.002;
-						console.log("BACK "+fraction);
+						//console.log("BACK "+fraction);
 						if(fraction<=0){fraction = 0; startAnimate = false}
 						
 					}
