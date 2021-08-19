@@ -203,7 +203,8 @@
 					
 
 				const animate = function () {	
-					if(deltaScroll!=1 || deltaScroll!=-1){
+					console.log(deltaScroll);
+					if(deltaScroll!=0){
 						if(isScroll){
 							//console.log("Camera position "+camera.position.y);
 							if(!startAnimate & fraction >= 0 & fraction < 1){
