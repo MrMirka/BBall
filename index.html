@@ -61,13 +61,13 @@
     	
 						);  
             pointsPath.add(bezierLine);
+
+			/*
 			const materialF = new THREE.LineBasicMaterial( { color: 0x0000ff } );
 			const pointsF = bezierLine.getPoints( 50 );
             const geometryF = new THREE.BufferGeometry().setFromPoints( pointsF );
-
 			const curveObject = new THREE.Line( geometryF, materialF );
-
-            //scene.add(curveObject);
+            scene.add(curveObject);*/
 
 			fraction = 0;
 			radiansGo = 0;
@@ -168,7 +168,7 @@
 			camera.position.set( 0, 10 , 0 );
 			//END_CAMERA position
 			
-			controls.update();
+			//controls.update();
 
 
             const loader = new GLTFLoader();
