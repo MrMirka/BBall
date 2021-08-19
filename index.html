@@ -25,6 +25,7 @@
 			var startScroll = false;
 			var isScroll = false;
 			var deltaScroll = 0;
+			var isGo =false;
 
 
 			const scene = new THREE.Scene();
@@ -206,7 +207,7 @@
 				const animate = function () {	
 					//console.log(deltaScroll);
 					//delta scroll апускаем анимацию в завиисимости от прокрутки колеса мышки
-					if(isGo()){
+					if(isGo){
 						if(isScroll){
 							//console.log("Camera position "+camera.position.y);
 							if(!startAnimate & fraction >= 0 & fraction < 1){
@@ -242,11 +243,11 @@
 						requestAnimationFrame( animate );
 						renderer.render( scene, camera );
 					};
+					isGo=false;
 				};
 
 				window.addEventListener("wheel", function(e) {
-						deltaScroll = e.deltaY;
-						console.log(e.deltaY);
+						isGo=true;
 						//const ball = scene.getObjectByName( 'ball' );
 						if(!startScroll){startScroll=true; isScroll=true;};
 						}, true);
@@ -261,10 +262,7 @@
 
 		} );
 
-		function isGo(){
-			if(deltaScroll==0){ return true;}
-			
-		}
+		
 		
         
 		</script>
