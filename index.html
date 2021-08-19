@@ -28,6 +28,7 @@
 			var isGo =false;
 
 
+
 			const scene = new THREE.Scene();
 			const camera = new THREE.PerspectiveCamera( 750, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
@@ -210,7 +211,7 @@
 					if(isGo){
 						if(isScroll){
 							//console.log("Camera position "+camera.position.y);
-							if(!startAnimate & fraction >= 0 & fraction < 1){
+							if(!startAnimate & fraction >= 0 & fraction < 1 & isUp(deltaScroll)){
 								fraction +=0.002;	
 								if(camera.position.y>5){camera.position.y-=0.01;}			
 								if (fraction > 1) {fraction = 1;startAnimate = true; isScroll=false; startScroll=false;}  					
@@ -239,18 +240,16 @@
 							axisGo.crossVectors( upGo, tangent ).normalize();
 							gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
 							//controls.update();
-					}
+						}
 						isGo=false;
-				};
-						requestAnimationFrame( animate );
-						renderer.render( scene, camera );
-						
-					
-					
+					};
+					requestAnimationFrame( animate );
+					renderer.render( scene, camera );
 				};
 
 				window.addEventListener("wheel", function(e) {
 						isGo=true;
+						deltaScroll = e.deltaY;
 						//const ball = scene.getObjectByName( 'ball' );
 						if(!startScroll){startScroll=true; isScroll=true;};
 						}, true);
@@ -259,15 +258,18 @@
             
             }, undefined, function ( error ) {
 
-                console.error( error );
-
-				
+                console.error( error );	
 
 		} );
 
-		
-		
-        
+		function isUp(deltaY){
+			if(deltaY>0) {
+				return true;
+			}else {
+				return false;
+			}
+		};
+
 		</script>
 	</body>
 </html>
