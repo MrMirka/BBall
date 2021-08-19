@@ -23,6 +23,7 @@
 			var fraction, newPosition, tangent, axis, radians, pointsPath, up, axisGo, upGo, radiansGo, shadowMesh, StartBall;
 			var startAnimate = false;
 			var startScroll = false;
+			var isScroll = false;
 
 			const scene = new THREE.Scene();
 			const camera = new THREE.PerspectiveCamera( 750, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -200,17 +201,17 @@
 					
 
 				const animate = function () {
-					startScroll=true;
-					if(startScroll){
+					
+					if(isScroll){
 						if(!startAnimate & fraction >= 0 & fraction < 1){
 							fraction +=0.002;				
-							if (fraction > 1) {fraction = 1;startAnimate = true; startScroll=false}  
+							if (fraction > 1) {fraction = 1;startAnimate = true; isScroll=false; startScroll=false;}  
 							//console.log("FORWARD "+fraction);	
 										
 						} else{
 							fraction -=0.002;
 							//console.log("BACK "+fraction);
-							if(fraction<=0){fraction = 0; startAnimate = false; startScroll=false}
+							if(fraction<=0){fraction = 0; startAnimate = false; isScroll=false; tartScroll=false;}
 							
 						}
 						
@@ -240,7 +241,7 @@
 
 				window.addEventListener("wheel", function(e) {
 						//const ball = scene.getObjectByName( 'ball' );
-						if(!startScroll){animate();};
+						if(!startScroll){animate(); startScroll=true; isScroll=true;};
 						}, true);
 			//animate();
 			renderer.render( scene, camera );
