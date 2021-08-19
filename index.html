@@ -129,7 +129,7 @@
 			//scene.add( axesHelper );
 
 
-			//+++++++++++++++++++++TEST IMAGE TEXTURE LOADER++++++++++++++++++++++++++++
+			//+++++++++++++++++++++SHADOW IMAGE TEXTURE LOADER++++++++++++++++++++++++++++
 			const blendings = [
 					{ name: 'No', constant: THREE.NoBlending },
 					{ name: 'Normal', constant: THREE.NormalBlending },
@@ -140,10 +140,10 @@
 
 			const map = textureLoader.load( './img/shadow.png' );	
 			const geo = new THREE.PlaneGeometry( 1, 1 );
-			addImageRow(map);
+			addImage(map);
 
 
-			function addImageRow( map) {
+			function addImage( map) {
 					const blending = blendings[ 1 ];
 					const material = new THREE.MeshBasicMaterial( { map: map } );
 					material.transparent = true;
@@ -204,11 +204,11 @@
 					if(isScroll){
 						if(!startAnimate & fraction >= 0 & fraction < 1){
 							fraction +=0.002;	
-							camera.position.y+=0.2;			
+							camera.position.y-=0.03;			
 							if (fraction > 1) {fraction = 1;startAnimate = true; isScroll=false; startScroll=false;}  					
 						} else{
 							fraction -=0.002;
-							camera.position.y-=0.2;
+							camera.position.y+=0.03;
 							if(fraction<=0){fraction = 0; startAnimate = false; isScroll=false; startScroll=false;}
 						}
 						
