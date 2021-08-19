@@ -202,6 +202,7 @@
 
 				const animate = function () {			
 					if(isScroll){
+						console.log("Camera position "+camera.position.y);
 						if(!startAnimate & fraction >= 0 & fraction < 1){
 							fraction +=0.002;	
 							if(camera.position.y<10.5){camera.position.y-=0.001;}			
