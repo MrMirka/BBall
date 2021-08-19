@@ -211,7 +211,7 @@
 				const animate = function () {	
 					
 					if(isGo){
-					//	if(isScroll){
+						if(isScroll){
 							if(!startAnimate & fraction >= 0 & fraction < 1 & !isUp(deltaScroll)){
 								fraction +=0.002;	
 								if(camera.position.y>5){camera.position.y-=0.01;}			
@@ -240,7 +240,7 @@
 							}
 							axisGo.crossVectors( upGo, tangent ).normalize();
 							gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
-					//	}
+						}
 						isGo=false;
 					};
 					requestAnimationFrame( animate );
