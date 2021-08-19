@@ -200,21 +200,16 @@
 				});
 					
 
-				const animate = function () {
-					//console.log("START ANIMATE");
+				const animate = function () {			
 					if(isScroll){
 						if(!startAnimate & fraction >= 0 & fraction < 1){
 							fraction +=0.002;	
-							camera.position.y+=0.002;			
-							if (fraction > 1) {fraction = 1;startAnimate = true; isScroll=false; startScroll=false;}  
-							//console.log("FORWARD "+fraction);	
-										
+							camera.position.y+=0.2;			
+							if (fraction > 1) {fraction = 1;startAnimate = true; isScroll=false; startScroll=false;}  					
 						} else{
 							fraction -=0.002;
-							camera.position.y-=0.002;
-							//console.log("BACK "+fraction);
+							camera.position.y-=0.2;
 							if(fraction<=0){fraction = 0; startAnimate = false; isScroll=false; startScroll=false;}
-							
 						}
 						
 						//Move ball
