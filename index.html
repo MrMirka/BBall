@@ -198,31 +198,6 @@
 					renderer.render( scene, camera );
 				});
 					
-				//++++++++++++++++++TEST NEW ANIMATION++++++++++++++++++++++NOT USE
-				const animate2 = function () {
-					
-					fraction +=0.002;
-					if (fraction > 1) {fraction = 0;}  
-
-					//Move ball
-					newPosition = pointsPath.getPoint(fraction);
-					tangent = pointsPath.getTangent(fraction);
-					gltf.scene.position.copy(newPosition);
-					shadowMesh.position.copy(newPosition);
-					axis.crossVectors( up, tangent ).normalize();
-					radians = Math.acos(up.dot( tangent ) );
-					gltf.scene.quaternion.setFromAxisAngle( axis, radians );
-					
-					//Rotate Ball
-					axisGo.crossVectors( upGo, tangent ).normalize();
-					radiansGo +=0.05;
-					axisGo.crossVectors( upGo, tangent ).normalize();
-					gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
-					controls.update();
-					requestAnimationFrame( animate2 );
-					renderer.render( scene, camera );
-		    	};
-				//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 				const animate = function () {
 
