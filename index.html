@@ -246,7 +246,7 @@
 				window.addEventListener("wheel", function(e) {
 						deltaScroll=e.deltaY;
 						//const ball = scene.getObjectByName( 'ball' );
-						if(!startScroll){startScroll=true; isScroll=true;};
+						if(!startScroll){startScroll=true; isScroll=true; deltaScroll=2;};
 						}, true);
 			animate();
 			renderer.render( scene, camera );
