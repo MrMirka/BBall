@@ -232,7 +232,7 @@
 							
 							//Rotate Ball
 							axisGo.crossVectors( upGo, tangent ).normalize();
-							if(!startAnimate & isUp(deltaScroll)){
+							if(!startAnimate & !isUp(deltaScroll)){
 								radiansGo +=0.05;
 							}else{
 								radiansGo -=0.05;
