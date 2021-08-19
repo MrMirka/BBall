@@ -206,11 +206,11 @@
 						console.log("Camera position "+camera.position.y);
 						if(!startAnimate & fraction >= 0 & fraction < 1){
 							fraction +=0.002;	
-							if(camera.position.y>7){camera.position.y-=0.07;}			
+							if(camera.position.y>7){camera.position.y-=0.02;}			
 							if (fraction > 1) {fraction = 1;startAnimate = true; isScroll=false; startScroll=false;}  					
 						} else{
 							fraction -=0.002;
-							if(camera.position.y<10){camera.position.y+=0.7;}
+							if(camera.position.y<10){camera.position.y+=0.02;}
 							if(fraction<=0){fraction = 0; startAnimate = false; isScroll=false; startScroll=false;}
 						}
 						
