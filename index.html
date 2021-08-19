@@ -215,11 +215,9 @@
 						if(isScroll){
 							if(!startAnimate & fraction >= 0 & fraction < 1 & !isUp(deltaScroll)){
 								fraction +=GetSpeedDelta(deltaScroll);	
-								if(camera.position.y>5){camera.position.y-=(fraction*1.3);}			
 								if (fraction > 1) {fraction = 1;startAnimate = false; isScroll=false; startScroll=false; isGo=false;}  					
 							} else{
 								fraction -=GetSpeedDelta(deltaScroll);
-								if(camera.position.y<10){camera.position.y+=(fraction*1.3);}
 								if(fraction<=0){fraction = 0; startAnimate = false; isScroll=false; startScroll=false; isGo=false;}
 							}
 							
@@ -241,6 +239,7 @@
 							}
 							axisGo.crossVectors( upGo, tangent ).normalize();
 							gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
+							SetCameraPosition(gltf.scene.position.x);
 						}
 						isGo=false;
 					};
@@ -271,16 +270,20 @@
 			}
 		};
 
+		//Возвряшает значание ускорения мяча
 		function GetSpeedDelta(deltaY){
-			console.log( "POSITION "+ Math.abs(deltaY)/2000);
 			return Math.abs(deltaY)/2000;
-			//return 0.002;
 		}
+
+		//Возвращает скорость вращения
 		function GetSpeedDeltaRotate(deltaY){
-			console.log("ROTATION "+Math.abs(deltaY)/100);
 			return Math.abs(deltaY)/200;
-			//return 0.05;
 		}
+
+		function SetCameraPosition(Xfactor){
+			camera.position.y+=Xfactor;
+		}
+
 
 		</script>
 	</body>
