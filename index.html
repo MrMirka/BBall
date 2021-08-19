@@ -204,12 +204,14 @@
 					//console.log("START ANIMATE");
 					if(isScroll){
 						if(!startAnimate & fraction >= 0 & fraction < 1){
-							fraction +=0.002;				
+							fraction +=0.002;	
+							camera.rotation.y+=fraction;			
 							if (fraction > 1) {fraction = 1;startAnimate = true; isScroll=false; startScroll=false;}  
 							//console.log("FORWARD "+fraction);	
 										
 						} else{
 							fraction -=0.002;
+							camera.rotation.y-=fraction;
 							//console.log("BACK "+fraction);
 							if(fraction<=0){fraction = 0; startAnimate = false; isScroll=false; startScroll=false;}
 							
