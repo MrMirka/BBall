@@ -26,7 +26,7 @@
 			var isScroll = false; //Проверка активен ли скролл
 			var deltaScroll = 0;
 			var isGo =false;
-			var fovDelta = 0.024;
+			var fovDelta = 0.036;
 
 
 
@@ -283,14 +283,14 @@
 
 		function SetCameraPosition(cameraShift){
 			if(isUp){
-				camera.fov+= cameraShift;
+				camera.setFocalLength(camera.fov+= cameraShift);
 			}else{
-				camera.fov-= cameraShift;
+				camera.setFocalLength(camera.fov-= cameraShift);
 			}
 			if(camera.fov>750) {
-				camera.fov=750;
+				camera.setFocalLength(750);
 			} else if(camera.fov<732) {
-				camera.fov=732;
+				camera.setFocalLength(732);
 			}
 			console.log(camera.fov);
 		}
