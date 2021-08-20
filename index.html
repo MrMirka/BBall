@@ -26,11 +26,12 @@
 			var isScroll = false; //Проверка активен ли скролл
 			var deltaScroll = 0;
 			var isGo =false;
+			var fovDelta = 0.024;
 
 
 
 			const scene = new THREE.Scene();
-			const camera = new THREE.PerspectiveCamera( 738, window.innerWidth / window.innerHeight, 0.1, 1000 );
+			const camera = new THREE.PerspectiveCamera( 750, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
 			const textureLoader = new THREE.TextureLoader();
 
@@ -239,7 +240,7 @@
 							}
 							axisGo.crossVectors( upGo, tangent ).normalize();
 							gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
-							SetCameraPosition(1.484);
+							SetCameraPosition(fovDelta);
 						}
 						isGo=false;
 					};
@@ -281,7 +282,6 @@
 		}
 
 		function SetCameraPosition(cameraShift){
-			console.log("BALL Position "+Xfactor);
 			if(isUp){
 				camera.fov+= cameraShift;
 			}else{
@@ -289,8 +289,8 @@
 			}
 			if(camera.fov>750) {
 				camera.fov=750;
-			} else if(camera.fov<742) {
-				camera.fov=742;
+			} else if(camera.fov<732) {
+				camera.fov=732;
 			}
 		}
 
