@@ -30,7 +30,7 @@
 
 
 			const scene = new THREE.Scene();
-			const camera = new THREE.PerspectiveCamera( 745, window.innerWidth / window.innerHeight, 0.1, 1000 );
+			const camera = new THREE.PerspectiveCamera( 742, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
 			const textureLoader = new THREE.TextureLoader();
 
@@ -282,6 +282,16 @@
 
 		function SetCameraPosition(Xfactor){
 			console.log("BALL Position "+Xfactor);
+			if(isUp){
+				camera.fov+= d;
+			}else{
+				camera.fov-= d;
+			}
+			if(camera.fov>750) {
+				camera.fov=750;
+			} else if(camera.fov<742) {
+				camera.fov=742;
+			}
 			//camera.position.y*=(Xfactor/4);
 			//console.log(Xfactor);
 		}
