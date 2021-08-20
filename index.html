@@ -27,8 +27,7 @@
 			var deltaScroll = 0;
 			var isGo =false;
 			var fovDelta = 0.08;
-			let prev = 0; //Счетчик прохода
-			let prevStop=false;
+			
 
 			//Положение мечя в относительной системе координат
 			var ballPosition = 0; 
@@ -245,8 +244,8 @@
 							}
 							axisGo.crossVectors( upGo, tangent ).normalize();
 							gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
-							//SetCameraPosition2(gltf.scene.position.x);
-							showDeltaShift(gltf.scene.position.x);
+							SetCameraPosition(fovDelta);
+							
 							
 						}
 						isGo=false;
@@ -299,32 +298,8 @@
 			//console.log("FOV "+camera.getFocalLength());			
 		};
 
-		function SetCameraPosition2(xFactor){
-			
-		};
+		f
 
-		function setBallPosition(){
-			if(isUp(deltaScroll)) {
-				if(ballPosition!=0){
-					ballPosition-=0.02
-					if(ballPosition<0){ballPosition=0;}
-				}
-			}
-		}
-
-		function showDeltaShift(x){
-			if(!prevStop) {
-				if (x>-1) {
-					console.log("X "+x);
-					console.log("ITER "+prev);
-					prev+=1;
-					if(x == -0.9) {
-						console.log("ITER "+prev);
-						prevStop=true;
-					}
-			}
-		}
-		}
 
 		</script>
 	</body>
