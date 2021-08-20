@@ -282,16 +282,17 @@
 		}
 
 		function SetCameraPosition(cameraShift){
-			if(isUp){
-				camera.setFocalLength(camera.fov+= cameraShift);
-			}else{
-				camera.setFocalLength(camera.fov-= cameraShift);
-			}
 			if(camera.fov>750) {
 				camera.setFocalLength(750);
 			} else if(camera.fov<732) {
 				camera.setFocalLength(732);
 			}
+			if(isUp){
+				camera.setFocalLength(camera.fov+= cameraShift);
+			}else{
+				camera.setFocalLength(camera.fov-= cameraShift);
+			}
+			
 			console.log(camera.fov);
 		}
 
