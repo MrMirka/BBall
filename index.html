@@ -240,7 +240,7 @@
 							}
 							axisGo.crossVectors( upGo, tangent ).normalize();
 							gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
-							SetCameraPosition(fovDelta);
+							SetCameraPosition(40/(500/gltf.scene.position.x));
 						}
 						isGo=false;
 					};
