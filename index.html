@@ -282,24 +282,23 @@
 		}
 
 		function SetCameraPosition(cameraShift){
-			camera.setFocalLength(750);
-			console.log("Start patamert "+camera.fov);
+			console.log("Start patamert "+camera.getFocalLength());
 			if(camera.fov>750) {
-				console.log("BIGGER");
+				
 				camera.setFocalLength(750);
 			} else if(camera.fov<732) {
-				console.log("LITTLE");
+			
 				camera.setFocalLength(732);
 			}
 			if(isUp){
-				console.log("UP");
+				
 				camera.setFocalLength(camera.fov+= cameraShift);
 			}else{
-				console.log("DOWN");
+			
 				camera.setFocalLength(camera.fov-= cameraShift);
 			}
 			
-			console.log("Exit patamert "+camera.fov);
+			
 		}
 
 
