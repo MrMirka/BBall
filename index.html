@@ -241,6 +241,7 @@
 							axisGo.crossVectors( upGo, tangent ).normalize();
 							gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
 							SetCameraPosition(fovDelta*1.2);
+							console.log(gltf.scene.position.x);
 						}
 						isGo=false;
 					};
@@ -289,8 +290,12 @@
 				if(camera.getFocalLength()>80.7) {camera.setFocalLength(80.7);}
 				camera.setFocalLength(camera.getFocalLength() + cameraShift);
 			}
-			console.log("FOV "+camera.getFocalLength());			
-	};
+			//console.log("FOV "+camera.getFocalLength());			
+		};
+
+		function SetCameraPosition2(xFactor){
+			
+		};
 
 
 		</script>
