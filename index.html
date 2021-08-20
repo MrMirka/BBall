@@ -282,7 +282,7 @@
 		}
 
 		function SetCameraPosition(cameraShift){
-			console.log("Start patamert "+camera.getFocalLength());
+			
 			/*if(camera.getFocalLength()>40.7) {
 				
 				camera.setFocalLength(40.7);
@@ -290,13 +290,14 @@
 			
 				camera.setFocalLength(41.7);
 			}*/
-			if(!isUp){
+			if(isUp){
 				
 				camera.setFocalLength(camera.getFocalLength() + cameraShift);
 			}else{
 			
 				camera.setFocalLength(camera.getFocalLength() - cameraShift);
 			}
+			console.log("FOV "+camera.getFocalLength());
 			
 			
 		}
