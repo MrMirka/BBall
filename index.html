@@ -27,7 +27,8 @@
 			var deltaScroll = 0;
 			var isGo =false;
 			var fovDelta = 0.08;
-			let prev = []; //Массив для храниние двух элементов, что бы вычистить их разницу
+			let prev = 0; //Счетчик прохода
+			let prevStop=false;
 
 			//Положение мечя в относительной системе координат
 			var ballPosition = 0; 
@@ -312,14 +313,13 @@
 		}
 
 		function showDeltaShift(x){
-			
-			if(prev.length<2){
-				prev.push(x);
-			}
-			if(prev.length==2){
-				let x = prev[1]-prev[0];
-				console.log("DELTA " +x);
-				prev=[];
+			if(!prevStop) {}
+				if (x>-1) {
+					prev+=1
+					if(x=-1) {
+						console.log("ITER "+prev);
+						prevStop=true;
+					}
 			}
 		}
 
