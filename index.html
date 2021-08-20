@@ -27,6 +27,10 @@
 			var deltaScroll = 0;
 			var isGo =false;
 			var fovDelta = 0.08;
+			let prev = []; //Массив для храниние двух элементов, что бы вычистить их разницу
+
+			//Положение мечя в относительной системе координат
+			var ballPosition = 0; 
 
 
 
@@ -240,8 +244,9 @@
 							}
 							axisGo.crossVectors( upGo, tangent ).normalize();
 							gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
-							SetCameraPosition(fovDelta*1.2);
-							console.log("position "+gltf.scene.position.x);
+							//SetCameraPosition2(gltf.scene.position.x);
+							showDeltaShift(gltf.scene.position.x);
+							
 						}
 						isGo=false;
 					};
@@ -297,6 +302,24 @@
 			
 		};
 
+		function setBallPosition(){
+			if(isUp(deltaScroll)) {
+				if(ballPosition!=0){
+					ballPosition-=0.02
+					if(ballPosition<0){ballPosition=0;}
+				}
+			}
+		}
+
+		function showDeltaShift(x){
+			
+			if(prev.length<2){
+				prev.push(x);
+			}
+			if(prev.length==2){
+				console.log("DELTA "+prev[1]-prev[0]);
+			}
+		}
 
 		</script>
 	</body>
