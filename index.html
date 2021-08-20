@@ -283,7 +283,7 @@
 
 		function SetCameraPosition(cameraShift){
 			if(isUp(deltaScroll)){	
-				if(camera.getFocalLength()<40.7) {camera.setFocalLength(.7);}
+				if(camera.getFocalLength()<40.7) {camera.setFocalLength(40.7);}
 				camera.setFocalLength(camera.getFocalLength() - cameraShift);
 			}else{
 				if(camera.getFocalLength()>80.7) {camera.setFocalLength(80.7);}
