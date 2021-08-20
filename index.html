@@ -30,7 +30,7 @@
 
 
 			const scene = new THREE.Scene();
-			const camera = new THREE.PerspectiveCamera( 742, window.innerWidth / window.innerHeight, 0.1, 1000 );
+			const camera = new THREE.PerspectiveCamera( 738, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
 			const textureLoader = new THREE.TextureLoader();
 
@@ -239,7 +239,7 @@
 							}
 							axisGo.crossVectors( upGo, tangent ).normalize();
 							gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
-							SetCameraPosition(gltf.scene.position.x);
+							SetCameraPosition(1.484);
 						}
 						isGo=false;
 					};
@@ -280,20 +280,18 @@
 			return Math.abs(deltaY)/230;
 		}
 
-		function SetCameraPosition(Xfactor){
+		function SetCameraPosition(cameraShift){
 			console.log("BALL Position "+Xfactor);
 			if(isUp){
-				camera.fov+= d;
+				camera.fov+= cameraShift;
 			}else{
-				camera.fov-= d;
+				camera.fov-= cameraShift;
 			}
 			if(camera.fov>750) {
 				camera.fov=750;
 			} else if(camera.fov<742) {
 				camera.fov=742;
 			}
-			//camera.position.y*=(Xfactor/4);
-			//console.log(Xfactor);
 		}
 
 
