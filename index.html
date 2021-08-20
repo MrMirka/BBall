@@ -240,7 +240,7 @@
 							}
 							axisGo.crossVectors( upGo, tangent ).normalize();
 							gltf.scene.quaternion.setFromAxisAngle( axisGo, radiansGo );
-							SetCameraPosition(40/(500/gltf.scene.position.x));
+							SetCameraPosition(fovDelta*20);
 						}
 						isGo=false;
 					};
@@ -285,7 +285,7 @@
 			if(isUp(deltaScroll)){	
 				console.log("UP");
 				camera.setFocalLength(camera.getFocalLength() - cameraShift);
-				if(camera.getFocalLength()<40.7) {camera.setFocalLength(40.7);}
+				if(camera.getFocalLength()<40.7) {camera.setFocalLength(.7);}
 			}else{
 				console.log("DOWN");
 				camera.setFocalLength(camera.getFocalLength() + cameraShift);
