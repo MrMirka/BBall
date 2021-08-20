@@ -26,7 +26,7 @@
 			var isScroll = false; //Проверка активен ли скролл
 			var deltaScroll = 0;
 			var isGo =false;
-			var fovDelta = 0.036;
+			var fovDelta = 0.002;
 
 
 
@@ -283,19 +283,19 @@
 
 		function SetCameraPosition(cameraShift){
 			console.log("Start patamert "+camera.getFocalLength());
-			if(camera.fov>750) {
+			if(camera.getFocalLength()>40.7) {
 				
-				camera.setFocalLength(750);
-			} else if(camera.fov<732) {
+				camera.setFocalLength(40.7);
+			} else if(ccamera.getFocalLength()<39.7) {
 			
-				camera.setFocalLength(732);
+				camera.setFocalLength(39.7);
 			}
 			if(isUp){
 				
-				camera.setFocalLength(camera.fov+= cameraShift);
+				camera.setFocalLength(camera.getFocalLength()+= cameraShift);
 			}else{
 			
-				camera.setFocalLength(camera.fov-= cameraShift);
+				camera.setFocalLength(camera.getFocalLength()-= cameraShift);
 			}
 			
 			
