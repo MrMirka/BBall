@@ -21,7 +21,7 @@
             import { RoughnessMipmapper } from './threejs-dev/examples/jsm/utils/RoughnessMipmapper.js';
 
 			var fraction, newPosition, tangent, axis, radians, pointsPath, up, axisGo, upGo, radiansGo, shadowMesh, StartBall;
-			var startAnimate = false; //Направление движение мячика
+			var toLeft = false; //Направление движение мячика
 			var startScroll = false;
 			var isScroll = false; //Проверка активен ли скролл
 			var deltaScroll = 0;
@@ -213,12 +213,12 @@
 					
 					if(isGo){
 						if(isScroll){
-							if(!startAnimate & fraction >= 0 & fraction < 1 & !isUp(deltaScroll)){
+							if(!toLeft & fraction >= 0 & fraction < 1 & !isUp(deltaScroll)){
 								fraction +=GetSpeedDelta(deltaScroll);	
-								if (fraction > 1) {fraction = 1;startAnimate = false; isScroll=false; startScroll=false; isGo=false;}  					
+								if (fraction > 1) {fraction = 1;toLeft = false; isScroll=false; startScroll=false; isGo=false;}  					
 							} else{
 								fraction -=GetSpeedDelta(deltaScroll);
-								if(fraction<=0){fraction = 0; startAnimate = false; isScroll=false; startScroll=false; isGo=false;}
+								if(fraction<=0){fraction = 0; toLeft = false; isScroll=false; startScroll=false; isGo=false;}
 							}
 							
 							//Move ball
