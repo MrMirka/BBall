@@ -291,10 +291,10 @@
 				camera.setFocalLength(41.7);
 			}*/
 			if(isUp){
-				
+				console.log("UP");
 				camera.setFocalLength(camera.getFocalLength() + cameraShift);
 			}else{
-			
+				console.log("DOWN");
 				camera.setFocalLength(camera.getFocalLength() - cameraShift);
 			}
 			console.log("FOV "+camera.getFocalLength());
