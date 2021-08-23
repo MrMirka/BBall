@@ -233,7 +233,7 @@
 							shadowMesh.position.copy(newPosition);
 							axis.crossVectors( up, tangent ).normalize();
 							radians = Math.acos(up.dot( tangent ) );
-							gltf.scene.quaternion.setFromAxisAngle( axis, radians );
+							//gltf.scene.quaternion.setFromAxisAngle( axis, radians );
 							
 							//Rotate Ball
 							axisGo.crossVectors( upGo, tangent ).normalize();
@@ -257,7 +257,6 @@
 				window.addEventListener("wheel", function(e) {
 						isGo=true;
 						deltaScroll = e.deltaY;
-						console.log("DELTA SCROLL"+e.deltaY)
 						if(!startScroll){startScroll=true; isScroll=true;};
 						}, true);
 			animate();
@@ -269,7 +268,8 @@
 
 		} );
 
-		//Проверяем направление скрола
+		//Проверяем направление скрола (нужно переписать, скролл с мышки дает неадеватные данные)
+		//Можно задать верхнию и нижнюю точки графики
 		function isUp(deltaY){
 			if(deltaY>0) {
 				return true;
