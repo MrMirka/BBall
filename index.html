@@ -257,6 +257,7 @@
 				window.addEventListener("wheel", function(e) {
 						isGo=true;
 						deltaScroll = e.deltaY;
+						console.log("DELTA SCROLL"+e.deltaY)
 						if(!startScroll){startScroll=true; isScroll=true;};
 						}, true);
 			animate();
@@ -289,25 +290,22 @@
 
 		function SetCameraPosition(cameraShift,x){
 			if(isUp(deltaScroll)){	
-				console.log("Current FOV "+camera.getFocalLength());
-				if(camera.getFocalLength()<40.7 && !toZoom(x)) {camera.setFocalLength(40.7); console.log("TO MIN");}
+				if(camera.getFocalLength()<40.7 && !toZoom(x)) {camera.setFocalLength(40.7);}
 				camera.setFocalLength(camera.getFocalLength() - cameraShift*2);
 			}else{
-				if(camera.getFocalLength()>80.7 && toZoom(x)) {camera.setFocalLength(80.7); console.log("TO MAX");}
+				if(camera.getFocalLength()>80.7 && toZoom(x)) {camera.setFocalLength(80.7);}
 				camera.setFocalLength(camera.getFocalLength() + cameraShift*2);
 			}
 			//console.log("FOV "+camera.getFocalLength());			
 		};
 
+		//Проверяет начальную и конечную точку кривой
 		function toZoom(x){
 			if(x<1 && x>-1){
-				//console.log("ZOOM "+x);
 				return true;
 				
 			} else{
-				//console.log("NOT_ZOOM "+x);
-				return false;
-				
+				return false;				
 			}
 		}
 		</script>
