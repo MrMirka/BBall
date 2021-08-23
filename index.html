@@ -291,10 +291,10 @@
 		function SetCameraPosition(cameraShift,x){
 			if(isUp(deltaScroll)){	
 				if(camera.getFocalLength()<40.7 && !toZoom(x)) {camera.setFocalLength(40.7);}
-				camera.setFocalLength(camera.getFocalLength() - cameraShift*2);
+				//camera.setFocalLength(camera.getFocalLength() - cameraShift*2);
 			}else{
 				if(camera.getFocalLength()>55.7 && toZoom(x)) {camera.setFocalLength(55.7);}
-				camera.setFocalLength(camera.getFocalLength() + cameraShift*2);
+				//camera.setFocalLength(camera.getFocalLength() + cameraShift*2);
 			}
 			//console.log("FOV "+camera.getFocalLength());			
 		};
