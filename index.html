@@ -289,6 +289,7 @@
 
 		function SetCameraPosition(cameraShift,x){
 			if(isUp(deltaScroll)){	
+				consoloe.log("Current FOV "+camera.getFocalLength());
 				if(camera.getFocalLength()<40.7 && toZoom(x)) {camera.setFocalLength(40.7); console.log("TO MIN");}
 				camera.setFocalLength(camera.getFocalLength() - cameraShift*2);
 			}else{
